@@ -1,23 +1,35 @@
+drop database nba_db;
 create database nba_db;
 use nba_db;
 
 create table Players (
-	Player varchar(255) PRIMARY key,
-    id int,
-    college text
+	Player_Name varchar(255),
+    college text,
+    id int primary key
 );
 
 create table Season_Stats (
-	Player varchar(255) primary key,
-    id int,
-    G int,
-    FG decimal,
-	FT decimal,
-    AST int,
-    PTS int
+	Player_Name varchar(255),
+    Games_Played int,
+    Year int,
+    Team varchar(30),
+    Field_Goal_Percentage double,
+	Free_Throw_Percentage double,
+    Total_Assists int,
+    Total_Points int,
+    id int primary key
 );
 
-select Players.Player, Players.id, Players.college, Season_Stats.Player, Season_Stats.id, Season_Stats.G, Season_Stats.FG, Season_Stats.FT, Season_Stats.AST, Season_Stats.PTS
+
+
+#SELECT CONCAT(Season_Stats.Field_Goal_Percentage * 100 , '%') as Field_Goal_Percentage
+#FROM Season_Stats;
+
+#SELECT CONCAT(Season_Stats.Field_Goal_Percentage * 100 , '%') as Field_Goal_Percentage
+#FROM Season_Stats;
+
+select Players.Player_Name, Players.college, Season_Stats.Games_Played, Season_Stats.Year, Season_Stats.Team, Season_Stats.Field_Goal_Percentage, Season_Stats.Free_Throw_Percentage, Season_Stats.Total_Assists, Season_Stats.Total_Points, Season_Stats.id
 from Players
 JOIN Season_Stats
-on Players.Player = Season_Stats.Player
+on Players.Player_Name = Season_Stats.Player_Name;
+
